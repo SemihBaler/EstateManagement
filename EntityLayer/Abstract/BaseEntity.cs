@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EntityLayer.Abstract
 {
     public enum Status { Active = 1, Passive, Modified }
-    public abstract class BaseEntity
+    public abstract class BaseEntity:IEntity
     {
 
         private DateTime createdDate;

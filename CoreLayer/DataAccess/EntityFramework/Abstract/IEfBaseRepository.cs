@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using EntityLayer.Abstract;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreLayer.DataAccess.EntityFramework.Abstract
 {
-    public interface IEfBaseRepository<TEntity> where TEntity : class
+    public interface IEfBaseRepository<TEntity> where TEntity : class,IEntity, new()
     {
         Task AddAsync(TEntity entity);
         Task DeleteAsync(int id);

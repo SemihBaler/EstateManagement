@@ -1,5 +1,5 @@
 ﻿using CoreLayer.UnitOfWork.Abstract;
-using DataAccesLayer.Concrete.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CoreLayer.UnitOfWork.Concrete
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<T> : IUnitOfWork where  T : DbContext, new()
     {
-        private readonly EstateDbContext _context;
-        public UnitOfWork(EstateDbContext dataBase)
+        private readonly T _context;
+        public UnitOfWork(T dataBase)
         {
             _context = dataBase;
         }

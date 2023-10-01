@@ -1,6 +1,6 @@
 ﻿using CoreLayer.DataAccess.EntityFramework.Abstract;
 using CoreLayer.UnitOfWork.Abstract;
-using DataAccesLayer.Concrete.Context;
+using EntityLayer.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -12,18 +12,19 @@ using System.Threading.Tasks;
 
 namespace CoreLayer.DataAccess.EntityFramework.Concrete
 {
-    public class EfBaseRepository<TEntity> : IEfBaseRepository<TEntity> where TEntity : class
+    public class EfBaseRepository<TEntity,TContext> : IEfBaseRepository<TEntity> where TEntity : class,IEntity,new() where TContext : DbContext, new()
     {
-        private readonly EstateDbContext _context;
+        private readonly TContext _context;
 
-        public EfBaseRepository(EstateDbContext unitOfWork)
+        public EfBaseRepository(TContext unitOfWork)
         {
             _context = unitOfWork;
         }
 
         public async Task AddAsync(TEntity entity)
         {
-            await  _context.Set<TEntity>().AddAsync(entity);
+                await _context.Set<TEntity>().AddAsync(entity);
+ 
         }
 
         public async Task DeleteAsync(int id)

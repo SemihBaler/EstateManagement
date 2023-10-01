@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Type:BaseEntity
+    public class EstateType : BaseEntity
     {
         [Key]
-        public int TypeId { get; set; }
+        public int EstateTypeId { get; set; }
         public string? Name { get; set; }
         public ICollection<Customer> Customers { get; set; }
         public ICollection<Estate> Estates { get; set; }

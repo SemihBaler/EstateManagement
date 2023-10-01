@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccesLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_1 : Migration
+    public partial class mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,10 +29,10 @@ namespace DataAccesLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Types",
+                name: "EstateTypes",
                 columns: table => new
                 {
-                    TypeId = table.Column<int>(type: "int", nullable: false)
+                    EstateTypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -42,7 +42,7 @@ namespace DataAccesLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Types", x => x.TypeId);
+                    table.PrimaryKey("PK_EstateTypes", x => x.EstateTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,7 +78,7 @@ namespace DataAccesLayer.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Budget = table.Column<int>(type: "int", nullable: true),
-                    TypeId = table.Column<int>(type: "int", nullable: false),
+                    EstateTypeId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -95,10 +95,10 @@ namespace DataAccesLayer.Migrations
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Customers_Types_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "Types",
-                        principalColumn: "TypeId",
+                        name: "FK_Customers_EstateTypes_EstateTypeId",
+                        column: x => x.EstateTypeId,
+                        principalTable: "EstateTypes",
+                        principalColumn: "EstateTypeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -112,7 +112,7 @@ namespace DataAccesLayer.Migrations
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     District = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypeId = table.Column<int>(type: "int", nullable: false),
+                    EstateTypeId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -129,10 +129,10 @@ namespace DataAccesLayer.Migrations
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Estates_Types_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "Types",
-                        principalColumn: "TypeId",
+                        name: "FK_Estates_EstateTypes_EstateTypeId",
+                        column: x => x.EstateTypeId,
+                        principalTable: "EstateTypes",
+                        principalColumn: "EstateTypeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -142,9 +142,9 @@ namespace DataAccesLayer.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_TypeId",
+                name: "IX_Customers_EstateTypeId",
                 table: "Customers",
-                column: "TypeId");
+                column: "EstateTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estates_CategoryId",
@@ -152,9 +152,9 @@ namespace DataAccesLayer.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Estates_TypeId",
+                name: "IX_Estates_EstateTypeId",
                 table: "Estates",
-                column: "TypeId");
+                column: "EstateTypeId");
         }
 
         /// <inheritdoc />
@@ -173,7 +173,7 @@ namespace DataAccesLayer.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Types");
+                name: "EstateTypes");
         }
     }
 }
