@@ -73,6 +73,9 @@ namespace DataAccesLayer.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("EstateTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -88,9 +91,6 @@ namespace DataAccesLayer.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -98,7 +98,7 @@ namespace DataAccesLayer.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("EstateTypeId");
 
                     b.ToTable("Customers");
                 });
@@ -129,13 +129,13 @@ namespace DataAccesLayer.Migrations
                     b.Property<string>("District")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EstateTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Price")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -145,18 +145,18 @@ namespace DataAccesLayer.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("EstateTypeId");
 
                     b.ToTable("Estates");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Type", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.EstateType", b =>
                 {
-                    b.Property<int>("TypeId")
+                    b.Property<int>("EstateTypeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TypeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstateTypeId"));
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -173,9 +173,9 @@ namespace DataAccesLayer.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("TypeId");
+                    b.HasKey("EstateTypeId");
 
-                    b.ToTable("Types");
+                    b.ToTable("EstateTypes");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.User", b =>
@@ -226,9 +226,9 @@ namespace DataAccesLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.Type", "Type")
+                    b.HasOne("EntityLayer.Concrete.EstateType", "Type")
                         .WithMany("Customers")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("EstateTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -245,9 +245,9 @@ namespace DataAccesLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.Type", "Type")
+                    b.HasOne("EntityLayer.Concrete.EstateType", "Type")
                         .WithMany("Estates")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("EstateTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -263,7 +263,7 @@ namespace DataAccesLayer.Migrations
                     b.Navigation("Estates");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Type", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.EstateType", b =>
                 {
                     b.Navigation("Customers");
 

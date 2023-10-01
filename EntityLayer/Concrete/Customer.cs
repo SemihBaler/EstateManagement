@@ -20,7 +20,7 @@ namespace EntityLayer.Concrete
         public string? PhoneNumber { get; set; }
         public string? Adress { get; set; }
         public int? Budget { get; set; }
-        public Type Type { get; set; }
+        public User Type { get; set; }
         public int TypeId { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
