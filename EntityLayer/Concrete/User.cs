@@ -13,7 +13,7 @@ namespace EntityLayer.Concrete
     public class User : BaseEntity
     {
         [Key]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string? Name { get; set; }
         public string? LastName { get; set; }
         public string? Mail { get; set; }

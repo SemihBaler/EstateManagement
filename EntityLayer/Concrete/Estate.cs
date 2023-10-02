@@ -16,7 +16,7 @@ namespace EntityLayer.Concrete
         public string? Adress { get; set; }
         public string? City { get; set; }
         public string? District { get; set; }
-        public User Type { get; set; }
+        public EstateType Type { get; set; }
         public int EstateTypeId { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }

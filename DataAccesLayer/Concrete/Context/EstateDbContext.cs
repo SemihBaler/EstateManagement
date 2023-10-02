@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿using CoreLayer.SeedData;
+using EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,16 @@ namespace DataAccesLayer.Concrete.Context
         public DbSet<User> EstateTypes { get; set; }
         public DbSet<User> Users { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CategorySeedData());
+            modelBuilder.ApplyConfiguration(new CustomerSeedData());
+            modelBuilder.ApplyConfiguration(new EstateSeedData());
+            modelBuilder.ApplyConfiguration(new EstateTypeSeedData());
+            modelBuilder.ApplyConfiguration(new UserSeedData());
+
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }

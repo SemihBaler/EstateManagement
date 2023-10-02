@@ -59,7 +59,7 @@ namespace BusinessLayer.Concrete
             var category = await _categoryDal.GetByIdAsync(id);
             category.Status = Status.Modified;
             await _unitOfWork.CommitAsync();
-            return new SuccsessResult("Kategori Silme İşlemi  Başarılı ...");
+            return new SuccsessResult("Kategori Güncelleme İşlemi  Başarılı ...");
         }
     }
 }

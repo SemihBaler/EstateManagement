@@ -1,4 +1,11 @@
+using Arch.EntityFrameworkCore.UnitOfWork;
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using CoreLayer.UnitOfWork.Abstract;
+using CoreLayer.UnitOfWork.Concrete;
+using DataAccesLayer.Abstract;
 using DataAccesLayer.Concrete.Context;
+using DataAccesLayer.Concrete.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EstateManagementApi
@@ -13,6 +20,10 @@ namespace EstateManagementApi
             //    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
             //});
             builder.Services.AddDbContext<EstateDbContext>();
+            builder.Services.AddScoped<ICategoryService, CategoryManager>();
+            builder.Services.AddScoped<ICategoryDal, CategoryDal>();
+            builder.Services.AddScoped<CoreLayer.UnitOfWork.Abstract.IUnitOfWork, CoreLayer.UnitOfWork.Concrete.UnitOfWork<EstateDbContext>>();
+
 
             // Add services to the container.
 
@@ -31,7 +42,7 @@ namespace EstateManagementApi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

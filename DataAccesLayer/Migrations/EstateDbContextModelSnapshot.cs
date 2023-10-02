@@ -48,6 +48,22 @@ namespace DataAccesLayer.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5157),
+                            Name = "Satılık",
+                            Status = 1
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5167),
+                            Name = "Kiralık",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Customer", b =>
@@ -73,7 +89,7 @@ namespace DataAccesLayer.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EstateTypeId")
+                    b.Property<int?>("EstateTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -91,6 +107,9 @@ namespace DataAccesLayer.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -100,7 +119,36 @@ namespace DataAccesLayer.Migrations
 
                     b.HasIndex("EstateTypeId");
 
+                    b.HasIndex("TypeId");
+
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = 1,
+                            Adress = "Ankara",
+                            Budget = 5000000,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5293),
+                            LastName = "Baler",
+                            Mail = "semihbaler@gmail.com",
+                            Name = "Semih",
+                            Status = 1,
+                            TypeId = 2
+                        },
+                        new
+                        {
+                            CustomerId = 2,
+                            Adress = "Balıkesir",
+                            Budget = 12000,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5299),
+                            LastName = "Baler",
+                            Name = "Merve",
+                            Status = 1,
+                            TypeId = 1
+                        });
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Estate", b =>
@@ -148,6 +196,56 @@ namespace DataAccesLayer.Migrations
                     b.HasIndex("EstateTypeId");
 
                     b.ToTable("Estates");
+
+                    b.HasData(
+                        new
+                        {
+                            EstateId = 1,
+                            Adress = "Bağlıca",
+                            CategoryId = 1,
+                            City = "Ankara",
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5348),
+                            District = "Etimesgut",
+                            EstateTypeId = 2,
+                            Price = 7500000,
+                            Status = 1
+                        },
+                        new
+                        {
+                            EstateId = 2,
+                            Adress = "Alacaatlı",
+                            CategoryId = 1,
+                            City = "Ankara",
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5350),
+                            District = "Çankaya",
+                            EstateTypeId = 3,
+                            Price = 12000000,
+                            Status = 1
+                        },
+                        new
+                        {
+                            EstateId = 3,
+                            Adress = "Burhaniye",
+                            CategoryId = 2,
+                            City = "Balıkesir",
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5352),
+                            District = "Susurluk",
+                            EstateTypeId = 1,
+                            Price = 6500,
+                            Status = 1
+                        },
+                        new
+                        {
+                            EstateId = 4,
+                            Adress = "Elvan",
+                            CategoryId = 1,
+                            City = "İzmir",
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5352),
+                            District = "merkez",
+                            EstateTypeId = 1,
+                            Price = 1500000,
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.EstateType", b =>
@@ -175,13 +273,39 @@ namespace DataAccesLayer.Migrations
 
                     b.HasKey("EstateTypeId");
 
-                    b.ToTable("EstateTypes");
+                    b.ToTable("EstateType");
+
+                    b.HasData(
+                        new
+                        {
+                            EstateTypeId = 1,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5400),
+                            Name = "Müstakil",
+                            Status = 1
+                        },
+                        new
+                        {
+                            EstateTypeId = 2,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(6912),
+                            Name = "Daire",
+                            Status = 1
+                        },
+                        new
+                        {
+                            EstateTypeId = 3,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(6915),
+                            Name = "Arsa",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.User", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -215,7 +339,33 @@ namespace DataAccesLayer.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(7016),
+                            Name = "Ahmet",
+                            Role = "User",
+                            Status = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(7017),
+                            Name = "Mehmet",
+                            Role = "Customer",
+                            Status = 1
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(7018),
+                            Name = "Yade",
+                            Role = "Admin",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Customer", b =>
@@ -226,9 +376,13 @@ namespace DataAccesLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.EstateType", "Type")
+                    b.HasOne("EntityLayer.Concrete.EstateType", null)
                         .WithMany("Customers")
-                        .HasForeignKey("EstateTypeId")
+                        .HasForeignKey("EstateTypeId");
+
+                    b.HasOne("EntityLayer.Concrete.User", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

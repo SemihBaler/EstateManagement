@@ -10,12 +10,12 @@ namespace EntityLayer.Abstract
     public abstract class BaseEntity:IEntity
     {
 
-        private DateTime createdDate;
+        private DateTime createdDate= DateTime.Now;
         public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
         public DateTime? DeletedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        private Status status;
+        private Status status=Status.Active;
         public Status Status { get => status; set => status = value; }
 
     }
