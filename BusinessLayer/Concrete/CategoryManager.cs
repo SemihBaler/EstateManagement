@@ -34,7 +34,6 @@ namespace BusinessLayer.Concrete
            public IResult Update(Category entity)
         {
            _categoryDal.Update(entity);
-            entity.Status = Status.Modified;
            _unitOfWork.Commit();
             return new SuccsessResult("Kategori Güncelleme İşlemi  Başarılı ...");
         }

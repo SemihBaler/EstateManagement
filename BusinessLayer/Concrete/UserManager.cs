@@ -34,7 +34,6 @@ namespace BusinessLayer.Concrete
         public IResult Update(User entity)
         {
             _userDal.Update(entity);
-            entity.Status = Status.Modified;
             _unitOfWork.Commit();
             return new SuccsessResult("Kullanıcı Güncelleme İşlemi  Başarılı ...");
         }

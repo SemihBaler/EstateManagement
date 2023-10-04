@@ -34,7 +34,6 @@ namespace BusinessLayer.Concrete
         public IResult Update(Estate entity)
         {
             _estateDal.Update(entity);
-            entity.Status = Status.Modified;
             _unitOfWork.Commit();
             return new SuccsessResult("Emlak Güncelleme İşlemi  Başarılı ...");
         }

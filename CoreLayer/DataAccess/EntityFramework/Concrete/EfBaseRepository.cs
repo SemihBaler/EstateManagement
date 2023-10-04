@@ -37,14 +37,14 @@ namespace CoreLayer.DataAccess.EntityFramework.Concrete
         {
             var entity = await _context.Set<TEntity>().FindAsync(id);
             entity.DeletedDate = DateTime.Now;
-            entity.Status = Status.Passive;
             _context.Entry(entity).State = EntityState.Deleted;
         }
         public void Update(TEntity entity)
         {
             // Önce veriyi güncellemek için DbSet'ten varlığı alın
             entity.UpdatedDate = DateTime.Now;
-              _context.Entry(entity).State = EntityState.Modified;
+            entity.Status = Status.Modified;
+            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public async Task<IEnumerable<TEntity>> GetAllListAsync()

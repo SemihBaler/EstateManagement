@@ -34,7 +34,6 @@ namespace BusinessLayer.Concrete
         public IResult Update(Customer category)
         {
             _customerDal.Update(category);
-            category.Status = Status.Modified;
             _unitOfWork.Commit();
             return new SuccsessResult("Müşteri Güncelleme İşlemi  Başarılı ...");
         }

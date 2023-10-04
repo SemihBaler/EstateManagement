@@ -33,7 +33,6 @@ namespace BusinessLayer.Concrete
         public IResult Update(EstateType entity)
         {
             _estateTypeDal.Update(entity);
-            entity.Status = Status.Modified;
             _unitOfWork.Commit();
             return new SuccsessResult("Emlak Türü Güncelleme İşlemi  Başarılı ...");
         }
