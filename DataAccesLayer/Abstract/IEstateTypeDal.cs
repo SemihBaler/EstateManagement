@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer.Abstract
 {
-    public interface IEstateTypeDal : IEfBaseRepository<User>
+    public interface IEstateTypeDal : IEfBaseRepository<EstateType>
     {
     }
 }

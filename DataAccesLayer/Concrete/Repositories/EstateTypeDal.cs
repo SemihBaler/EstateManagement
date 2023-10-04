@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer.Concrete.Repositories
 {
-    public class EstateTypeDal : EfBaseRepository<User, EstateDbContext>, IEstateTypeDal
+    public class EstateTypeDal : EfBaseRepository<EstateType, EstateDbContext>, IEstateTypeDal
     {
         public EstateTypeDal(EstateDbContext unitOfWork) : base(unitOfWork)
         {

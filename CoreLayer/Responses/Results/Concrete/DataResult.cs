@@ -11,12 +11,12 @@ namespace CoreLayer.Responses.Results.Concrete
     {
         public DataResult(T data,bool success,string message):base(success,message)
         {
-            data = Data;
+            Data = data;
 
         }
         public DataResult(T data, bool success) : base(success)
         {
-            data = Data;
+            Data = data;
 
         }
 

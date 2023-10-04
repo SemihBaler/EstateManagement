@@ -14,7 +14,7 @@ namespace CoreLayer.Responses.Results.Concrete
         public SuccsessDataResult(T data) : base(data, true)
         {
         }
-        public SuccsessDataResult(string message) : base(default, true)
+        public SuccsessDataResult(string message) : base(default, true,message)
         {
         }
         public SuccsessDataResult() : base(default, true)

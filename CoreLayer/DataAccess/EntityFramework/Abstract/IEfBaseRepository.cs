@@ -8,7 +8,8 @@ namespace CoreLayer.DataAccess.EntityFramework.Abstract
     {
         Task AddAsync(TEntity entity);
         Task DeleteAsync(int id);
-        Task UpdateAsync(int id);
+        Task RemoveAsync(int id);
+        void Update(TEntity entity);
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetAllListAsync();
         IQueryable<TResult> GetFilteredListAsync<TResult>( Expression<Func<TEntity, TResult>> select,

@@ -12,7 +12,8 @@ namespace BusinessLayer.Abstract
     {
         Task<IResult> AddAsync(Customer entity);
         Task<IResult> DeleteAsync(int id);
-        Task<IResult> UpdateAsync(int id);
+        Task<IResult> RemoveAsync(int id);
+        IResult Update(Customer entity);
         Task<IDataResult<Customer>> GetByIdAsync(int id);
         Task<IDataResult<IEnumerable<Customer>>> GetAllListAsync();
     }

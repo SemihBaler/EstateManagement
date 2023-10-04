@@ -12,44 +12,45 @@ using System.Threading.Tasks;
 
 namespace CoreLayer.DataAccess.EntityFramework.Concrete
 {
-    public class EfBaseRepository<TEntity,TContext> : IEfBaseRepository<TEntity> where TEntity : class,IEntity,new() where TContext : DbContext, new()
+    public class EfBaseRepository<TEntity,TContext> : IEfBaseRepository<TEntity> where TEntity : BaseEntity,IEntity,new() where TContext : DbContext, new()
     {
         private readonly TContext _context;
 
-        public EfBaseRepository(TContext unitOfWork)
+        public EfBaseRepository(TContext context)
         {
-            _context = unitOfWork;
+            _context = context;
         }
 
         public async Task AddAsync(TEntity entity)
         {
                 await _context.Set<TEntity>().AddAsync(entity);
- 
         }
-
         public async Task DeleteAsync(int id)
         {
             var entity=await _context.Set<TEntity>().FindAsync(id);
-            _context.Entry(entity).State=EntityState.Deleted;
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = Status.Passive;
+            _context.Entry(entity).State=EntityState.Modified;
             
         }
-        public async Task UpdateAsync(int id)
+        public async Task RemoveAsync(int id)
+        {
+            var entity = await _context.Set<TEntity>().FindAsync(id);
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = Status.Passive;
+            _context.Entry(entity).State = EntityState.Deleted;
+        }
+        public void Update(TEntity entity)
         {
             // Önce veriyi güncellemek için DbSet'ten varlığı alın
-            var existingEntity = await _context.Set<TEntity>().FindAsync(id);
-
-            if (existingEntity != null)
-            {
-                // Varlık bulunduğunda, mevcut veriyi güncelleyin
-                _context.Entry(existingEntity).State = EntityState.Modified;
-            }
+            entity.UpdatedDate = DateTime.Now;
+              _context.Entry(entity).State = EntityState.Modified;
         }
 
         public async Task<IEnumerable<TEntity>> GetAllListAsync()
         {
-           return await _context.Set<TEntity>().ToListAsync();
+            return await _context.Set<TEntity>().ToListAsync();
         }
-
         public async Task<TEntity> GetByIdAsync(int id)
         {
             var value = await _context.Set<TEntity>().FindAsync(id);
@@ -88,6 +89,6 @@ namespace CoreLayer.DataAccess.EntityFramework.Concrete
 
         }
 
-    
+      
     }
 }

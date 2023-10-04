@@ -22,8 +22,10 @@ namespace EstateManagementApi
             builder.Services.AddDbContext<EstateDbContext>();
             builder.Services.AddScoped<ICategoryService, CategoryManager>();
             builder.Services.AddScoped<ICategoryDal, CategoryDal>();
+            builder.Services.AddScoped<ICustomerDal, CustomerDal>();
+            builder.Services.AddScoped<ICustomerService, CustomerManager>();
             builder.Services.AddScoped<CoreLayer.UnitOfWork.Abstract.IUnitOfWork, CoreLayer.UnitOfWork.Concrete.UnitOfWork<EstateDbContext>>();
-
+            builder.Services.AddAutoMapper(typeof(Program));
 
             // Add services to the container.
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Abstract
 {
-    public enum Status { Active = 1, Passive, Modified }
+    public enum Status { Active = 1, Modified, Passive  }
     public abstract class BaseEntity:IEntity
     {
 
