@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{F5312D2D
 		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstateManagementMVC", "EstateManagementMVC\EstateManagementMVC.csproj", "{C909852B-85DE-4E4A-9342-EF261A5C810D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{185DF4F3-08F0-45C8-AFC7-6C3CEB82F6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185DF4F3-08F0-45C8-AFC7-6C3CEB82F6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185DF4F3-08F0-45C8-AFC7-6C3CEB82F6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C909852B-85DE-4E4A-9342-EF261A5C810D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C909852B-85DE-4E4A-9342-EF261A5C810D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C909852B-85DE-4E4A-9342-EF261A5C810D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C909852B-85DE-4E4A-9342-EF261A5C810D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
