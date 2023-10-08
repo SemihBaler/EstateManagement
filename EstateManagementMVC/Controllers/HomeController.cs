@@ -1,4 +1,5 @@
-﻿using EstateManagementMVC.Models;
+﻿using EstateManagementMVC.Dtos;
+using EstateManagementMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -14,6 +15,10 @@ namespace EstateManagementMVC.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Login(LoginUserDto user)
         {
             return View();
         }

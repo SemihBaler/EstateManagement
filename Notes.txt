@@ -1,3 +1,4 @@
 -> Commit edilip pusj lanan commit mesajýný deðiþtirme   git commit --amend -m "yeni commit mesajý"
 -> Unit Of Wok Veri tabanýnda deðiþiklikleri kaydetmek için ve veritabaný iþlemlerini farklý bir katmanda toplamak ve yönetmek için kullanýlýr.
 -> HangFire kütüphanesi araþtýrýlacak
+-> Paint 3d ile arka arka planý rahatça silip logoyu alabildim.
