@@ -1,223 +1,104 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EstateManagementMVC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/EstateManagementMVC.styles.css" asp-append-version="true" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>Eztra Zirve Gayrimenkul</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/CatalogTemplate/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/CatalogTemplate/assets/css/templatemo-sixteen.css">
+
+
 </head>
 <style>
-    .container {
-        position: relative
+    /* Navbarı büyütmek */
+    header {
+        height: 90px; /* Navbar yüksekliğini ayarlayın */
+        background-color: rgba(10,10,10,0.5);
     }
 
-    .btn {
-        width: 400px;
-        height: 250px;
-        font-size: 40px;
-    }
-
-    #EmlakPf {
-        background-color: rgba(180, 0, 0, 0.8); /* Tamamen şeffaf (siyah renkte) */
-        color: #ffffff; /* Yazı rengi (beyaz) */
-        border: 1px solid #ffffff; /* Kenarlık rengi (beyaz) */
-        padding: 10px 20px; /* Düğme içeriği içindeki dolgu */
-        margin: 4px 2px;
-        position: absolute;
-        top: 450px;
-        right: 1050px;
-        border-radius: 100px;
-    }
-
-        #EmlakPf:hover {
-            background-color: white; /* Tamamen şeffaf (siyah renkte) */
-            color: rgba(180, 0, 0, 0.8); /* Yazı rengi (beyaz) */
+        header .navbar {
+            padding: 1px 0; /* Navbar içeriğini ortalamak için padding ekleyin */
         }
 
-    #MusteriPf {
-        background-color: rgba(0, 60, 255, 0.8);
-        color: #ffffff; /* Yazı rengi (beyaz) */
-        border: 1px solid #ffffff; /* Kenarlık rengi (beyaz) */
-        padding: 10px 20px; /* Düğme içeriği içindeki dolgu */
-        margin: 4px 2px;
-        position: absolute;
-        top: 450px;
-        right: 500px;
-        border-radius: 100px;
-    }
-
-        #MusteriPf:hover {
-            background-color: rgba(255, 255, 255, 1); /* Tamamen şeffaf (siyah renkte) */
-            color: rgba(0, 60, 255, 0.8); /* Yazı rengi (beyaz) */
+        /* Logoyu ortalamak */
+        header .navbar-brand {
+            display: flex;
+            align-items: center; /* Dikey hizalama için */
         }
 
-    .subbtn {
-        width: 180px;
-        height: 70px;
-        background-color: rgba(180, 0, 0, 0.8); /* Tamamen şeffaf (siyah renkte) */
-        color: #ffffff; /* Yazı rengi (beyaz) */
-        border: 1px solid #ffffff; /* Kenarlık rengi (beyaz) */
-        padding: 1px 2px; /* Düğme içeriği içindeki dolgu */
-        display: flex;
-        justify-content: center; /* Yatayda ortala */
-        align-items: center; /* Dikeyde ortala */
-        text-align: center; /* İçerik ortala */
-        margin: 2px 1px;
-        position: absolute;
-        font-size: 28px;
-        border-radius: 40px;
+            header .navbar-brand img {
+                max-height: 100%; /* Logo boyutunu orantılı olarak büyütmek için */
+                margin: 0 auto; /* Logo yatayda ortalanacak */
+            }
+    /* Footer'ı aşağıya sabitleme */
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px; /* Yüksekliği istediğiniz değere ayarlayabilirsiniz */
+        color: #fff; /* Yazı rengi */
+        text-align: center;
+        z-index: 9999; /* Sayfanın üzerinde olması için z-index değeri */
     }
 
-    #Kiralik1 {
-        top: 750px;
-        right: 1060px
-    }
-
-    #Admin {
-        width:130px;
-        height:50px;
-        position:absolute;
-        top: 30px;
-        right: 50px;
-        font-size:20px;
-        font-weight:bold;
-        border-radius:20px;
-
-    }
-
-    #Satilik1 {
-        top: 750px;
-        right: 1260px
-    }
-
-    #Kiralik2 {
-        top: 750px;
-        right: 510px;
-        background-color: rgba(0, 60, 255, 0.8);
-    }
-
-    #Satilik2 {
-        top: 750px;
-        right: 710px;
-        background-color: rgba(0, 60, 255, 0.8);
-    }
-
-        #Satilik2:hover, #Kiralik2:hover {
-            background-color: white; /* Tamamen şeffaf (siyah renkte) */
-            color: rgba(0, 60, 255, 0.8); /* Yazı rengi (beyaz) */
+        /* Footer içeriğini ortalama */
+        footer .inner-content {
+            padding: 10px 0; /* İçeriği dikeyde ortalamak için padding ekleyin */
         }
-
-    #Satilik1:hover, #Kiralik1:hover {
-        background-color: white; /* Tamamen şeffaf (siyah renkte) */
-        color: rgba(180, 0, 0, 0.8); /* Yazı rengi (beyaz) */
-    }
-
 </style>
-<body style="background-image:url('/images/extra2.png')">
-    <div class="button-icon">
-        <button type="button" class="btn" id="EmlakPf">
-            Emlak Portföyü <span class="btn-icon-right"><i class="fa-solid fa-house"></i></span>
-        </button>
-        <button type="button" class="btn" id="MusteriPf">
-            Müşteri Portföyü <span class="btn-icon-right"><i class="fa-solid fa-person"></i></i></span>
-        </button>
-        <div class="button-container">
-            <button type="button" class="btn btn-light subbtn" id="Satilik1">
-                Satılık <span class="btn-icon-right"></span>
-            </button>
-            <button type="button" class="btn btn-light subbtn" id="Kiralik1">
-                Kiralık <span class="btn-icon-right"></span>
-            </button>
-            <button type="button" class="btn btn-light subbtn" id="Satilik2">
-                Satılık <span class="btn-icon-right"></span>
-            </button>
-            <button type="button" class="btn btn-light subbtn" id="Kiralik2">
-                Kiralık <span class="btn-icon-right"></span>
-            </button>
-        </div>
-
+<body style="background-image:url('/images/gayrimenkul.png'); background-size:cover;">
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href=""><img src="/images/Logo.png" style="width:400px;" /></a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Index" style="margin-bottom:100px;">
+                            Geri Dön
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="banner header-text">
+        @RenderBody()
     </div>
-    @RenderBody()
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <footer class="page-footer text-center" style="background-color: rgba(10,10,10,0.5); height:90px;">
+        <div class="pt-3">
+            <!-- Social icons -->
+            <div class="pb-2">
+                <a href="#" target="_blank" style="color:white" ;>
+                    <i class="fab fa-facebook-f mr-3"></i>
+                </a>
+                <a href="#" target="_blank" style="color:white" ;>
+                    <i class="fab fa-twitter mr-3"></i>
+                </a>
+                <a href="#" target="_blank" style="color:white" ;>
+                    <i class="fab fa-youtube mr-3"></i>
+                </a>
+                <a href="#" target="_blank" style="color:white" ;>
+                    <i class="fab fa-google-plus mr-3"></i>
+                </a>
+                <a href="#p" target="_blank" style="color:white" ;>
+                    <i class="fab fa-pinterest mr-3"></i>
+                </a>
+            </div>
+            <!-- Social icons -->
+            <!--Copyright-->
+            <div class="footer-copyright px-3">
+                © 2023 Copyright:
+                <a href="#" target="_blank" style="color:white"> Extra Zirve Gayrimenkul </a>
+            </div>
+        </div>
+        <!--/.Copyright-->
+        <!-- Bootstrap core JavaScript -->
+        <script src="/CatalogTemplate/vendor/jquery/jquery.min.js"></script>
 </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-    //$(document).ready(function () {
-    //    // Kiralık ve Satılık butonlarını gizle
-    //    $("#Satilik1, #Kiralik1,#Kiralik2,#Satilik2").hide();
-
-    //    // Emlak Portföyü butonuna tıklama olayını ekle
-    //    $('#EmlakPf').(function () {
-    //        // Kiralık ve Satılık butonlarını göster veya gizle
-    //        $("#Satilik1, #Kiralik1").toggle();
-    //    });
-
-    //    // Müşteri Portföyü butonuna tıklama olayını ekle
-    //    $('#MusteriPf').click(function () {
-    //        // Kiralık ve Satılık butonlarını göster veya gizle
-    //        $("#Satilik2, #Kiralik2").toggle();
-    //    });
-    //});
-
-
-    //$(document).ready(function () {
-    //    // Kiralık ve Satılık butonlarını gizle
-    //    $("#Satilik1, #Kiralik1, #Kiralik2, #Satilik2").hide();
-
-    //    // Emlak Portföyü butonuna mouse ile gelindiğinde alt butonları göster
-    //    $('#EmlakPf').mouseenter(function () {
-    //        $("#Satilik1, #Kiralik1").show();
-    //    }).mouseleave(function () {
-    //        $("#Satilik1, #Kiralik1").hide();
-    //    });
-
-    //    // Müşteri Portföyü butonuna mouse ile gelindiğinde alt butonları göster
-    //    $('#MusteriPf').mouseenter(function () {
-    //        $("#Satilik2, #Kiralik2").show();
-    //    }).mouseleave(function () {
-    //        $("#Satilik2, #Kiralik2").hide();
-    //    });
-    //});
-    $(document).ready(function () {
-        var altButonlarGorunur = false; // Alt butonların görünme durumu
-        var altButonlarGizleTimeout; // Alt butonları gizleme zamanlayıcısı
-
-        // Kiralık ve Satılık butonlarını gizle
-        $("#Satilik1, #Kiralik1, #Satilik2, #Kiralik2").hide();
-
-        // Emlak Portföyü butonuna mouse ile gelindiğinde alt butonları göster
-        $('#EmlakPf').mouseenter(function () {
-            $("#Satilik1, #Kiralik1").show();
-            altButonlarGorunur = true; // Alt butonlar görünür
-        });
-
-        // Müşteri Portföyü butonuna mouse ile gelindiğinde alt butonları göster
-        $('#MusteriPf').mouseenter(function () {
-            $("#Satilik2, #Kiralik2").show();
-            altButonlarGorunur = true; // Alt butonlar görünür
-        });
-
-        // Alt butonların üzerinden çekildiğinde gizle
-        $(".button-container").mouseleave(function () {
-            altButonlarGorunur = false; // Alt butonlar artık görünmez
-            // Belirli bir süre sonra alt butonları gizle
-            altButonlarGizleTimeout = setTimeout(function () {
-                $("#Satilik1, #Kiralik1, #Satilik2, #Kiralik2").hide();
-            }, 1000); // 1000 milisaniye (1 saniye) sonra gizle
-        });
-
-        // Alt butonlara gelindiğinde gizleme zamanlayıcısını temizle
-        $("#Satilik1, #Kiralik1, #Satilik2, #Kiralik2").mouseenter(function () {
-            clearTimeout(altButonlarGizleTimeout);
-        });
-    });
-</script>
