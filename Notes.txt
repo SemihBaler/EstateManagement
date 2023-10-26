@@ -1,4 +1,12 @@
--> Commit edilip pusj lanan commit mesajýný deðiþtirme   git commit --amend -m "yeni commit mesajý"
+-> Commit edilip push lanan commit mesajýný deðiþtirme   git commit --amend -m "yeni commit mesajý"
 -> Unit Of Wok Veri tabanýnda deðiþiklikleri kaydetmek için ve veritabaný iþlemlerini farklý bir katmanda toplamak ve yönetmek için kullanýlýr.
 -> HangFire kütüphanesi araþtýrýlacak
 -> Paint 3d ile arka arka planý rahatça silip logoyu alabildim.
+-> builder.Services.AddAutoMapper(typeof(Program)); BU kodlarla mapping yapamadým fakat aþaðýdaki kodlarla tanýmalmýþ oldum mappingi ve açlýþtý...
+   Bunun sebeplerinden bir taneside typeof(Program) ayný namespace içerisindeki prfile dan türemiþ sýnýflarý arýyor olabilir o yüzden çalýþmamýþ olabilir.
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);

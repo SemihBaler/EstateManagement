@@ -44,7 +44,7 @@ namespace EstateManagementApi.Controllers
         [HttpPost("UpdateCustomer")]
         public async Task<IActionResult> Update(UpdateCustomerDto entity)
         {
-            var category = await _customerService.GetByIdAsync(entity.CustomerId);
+            var customer = await _customerService.GetByIdAsync(entity.CustomerId);
             var updatedCustomer = _mapper.Map<Customer>(entity);
             var result = _customerService.Update(updatedCustomer);
             return Ok(result);

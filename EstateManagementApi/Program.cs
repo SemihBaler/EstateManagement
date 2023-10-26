@@ -1,6 +1,8 @@
 using Arch.EntityFrameworkCore.UnitOfWork;
+using AutoMapper;
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using CoreLayer.AutoMapper;
 using CoreLayer.UnitOfWork.Abstract;
 using CoreLayer.UnitOfWork.Concrete;
 using DataAccesLayer.Abstract;
@@ -20,12 +22,40 @@ namespace EstateManagementApi
             //    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
             //});
             builder.Services.AddDbContext<EstateDbContext>();
+            //builder.Services.AddAutoMapper(typeof(Program));
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
+
+
             builder.Services.AddScoped<ICategoryService, CategoryManager>();
             builder.Services.AddScoped<ICategoryDal, CategoryDal>();
+
+            builder.Services.AddScoped<IUserService, UserManager>();
+            builder.Services.AddScoped<IUserDal, UserDal>();
+
             builder.Services.AddScoped<ICustomerDal, CustomerDal>();
             builder.Services.AddScoped<ICustomerService, CustomerManager>();
+
+            builder.Services.AddScoped<ICityService, CityManager>();
+            builder.Services.AddScoped<ICityDal, CityDal>();
+
+            builder.Services.AddScoped<IDistrictService, DistrictManager>();
+            builder.Services.AddScoped<IDistrcitDal, DistrictDal>();
+
+            builder.Services.AddScoped<IEstateService, EstateManager>();
+            builder.Services.AddScoped<IEstateDal, EstateDal>();
+
+            builder.Services.AddScoped<IEstateTypeService, EstateTypeManager>();
+            builder.Services.AddScoped<IEstateTypeDal, EstateTypeDal>();
+
             builder.Services.AddScoped<CoreLayer.UnitOfWork.Abstract.IUnitOfWork, CoreLayer.UnitOfWork.Concrete.UnitOfWork<EstateDbContext>>();
-            builder.Services.AddAutoMapper(typeof(Program));
+           
+
 
             // Add services to the container.
 
