@@ -30,8 +30,10 @@
 </head>
 <style>
     #filter {
-        margin-bottom: 30px !important;
-        margin: 20px;
+        margin-bottom: 20px !important;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: none;
     }
 
         #filter button {
@@ -55,7 +57,7 @@
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
-                <div class="left_col" style="background-color:rgba(0, 0, 0,0.8);;">
+                <div class="left_col" style="">
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
@@ -147,7 +149,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
@@ -171,7 +172,7 @@
 
             <!-- top navigation -->
             <div class="top_nav">
-                <div class="nav_menu">
+                <div class="nav_menu" style="height:70px;">
                     <nav>
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -183,10 +184,8 @@
             <!-- /top navigation -->
             <!-- page content -->
             <div class="right_col" role="main">
-                <div class="">
+                <div class="" >
                     @RenderBody()
-
-
                 </div>
             </div>
             <!-- /page content -->

@@ -39,7 +39,7 @@ namespace EstateManagementApi.Controllers
         public async Task<IActionResult> RemoveAsync(int id)
         {
             var result = await _userService.RemoveAsync(id);
-            return Ok(result);
+            return Ok(result);                                                        
         }
         [HttpPost("UpdateUser")]
         public async Task<IActionResult> Update(UpdateUserDto entity)

@@ -99,31 +99,22 @@
 
     body {
         position: relative;
+        background-image: url('/images/gayrimenkul3.png');
+        background-image-
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        
     }
 
-        /* Arka plan resmi */
-        body::before {
-            content: "";
-            background-image: url('/images/gayrimenkul3.png'); /* Arka plan resmi URL'si */
-            filter: blur(px); /* Bulanıklık miktarını ayarlayın */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Ana içeriğin önünde olması için */
-            background-size: cover; /* Arka plan resminin boyutunu kaplama olarak ayarlayın */
-        }
 </style>
-
-
-<body style="background-image: url('/images/gayrimenkul3.png'); background-size:cover;">
-    <div class="login-form-sm h-100" id="body">
-        <div class="container h-100">
-            <div class="row justify-content-center h-100">
+<body>
+    <div class="login-form-sm" id="body">
+        <div class="container">
+            <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="form-input-content">
-                        <div class="card" style="border-radius:40px; width:auto; height:400px; background-color:rgba(0,0,0,0.2); ">
+                        <div class="card" style="border-radius:40px; width:auto; height:400px; background-color:rgba(0,0,0,0.2); margin-top:250px; ">
                             <div class="card-header mb-4">
                                 <a href="/Login/Index/"><img src="~/images/Logo3.png" style="width:350px; height:auto;" class="d-block mx-auto" /></a>
                             </div>
@@ -140,7 +131,7 @@
                                         <hr style="background-color: white; height: 100%; width: 2px; margin: 0 auto; border: none;">
                                     </div>
                                     <div class="col-xl-5 text-center btn-container">
-                                        <a href="/Estate/Index">
+                                        <a href="/Customer/Index">
                                             <button type="button" class="btn btn-primary" id="MusteriPf">
                                                 Müşteri Portföyü
                                                 <span class="btn-icon-right"><i class="fa-solid fa-person"></i></span>
@@ -158,6 +149,5 @@
             Admin <span class="btn-icon-right"><i class="fa-solid fa-lock"></i></span>
         </button>
     </div>
-
 </body>
 </html>
