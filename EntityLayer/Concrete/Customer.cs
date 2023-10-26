@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Customer:BaseEntity
+    public class Customer : BaseEntity
     {
         [Key]
         public int CustomerId { get; set; }
@@ -18,16 +18,12 @@ namespace EntityLayer.Concrete
         public string? LastName { get; set; }
         public string? Mail { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Adress { get; set; }
         public int? Budget { get; set; }
-        public User Type { get; set; }
-        public int TypeId { get; set; }
+        public City City { get; set; }
+        public int CityId { get; set; }
+        public EstateType EstateType { get; set; }
+        public int EstateTypeId { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
-
-      
-        
-       
-       
     }
 }

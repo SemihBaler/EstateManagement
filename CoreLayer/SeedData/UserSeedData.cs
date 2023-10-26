@@ -14,9 +14,9 @@ namespace CoreLayer.SeedData
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasData(
-              new User { UserId = 1, Name="Ahmet",Role="User"},
-              new User { UserId = 2, Name="Mehmet",Role="Customer"},
-              new User { UserId = 3, Name="Yade",Role="Admin"}
+              new User { UserId = 1, Name = "Ahmet", Role = "User" },
+              new User { UserId = 2, Name = "Mehmet", Role = "Customer" },
+              new User { UserId = 3, Name = "Yade", Role = "Admin" }
               );
         }
     }

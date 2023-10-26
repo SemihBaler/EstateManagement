@@ -15,8 +15,8 @@ namespace CoreLayer.SeedData
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.HasData(
-              new Customer { CustomerId = 1, Name = "Semih", LastName = "Baler", Mail = "semihbaler@gmail.com", Adress = "Ankara", Budget = 5000000, TypeId = 2,CategoryId=1 },
-              new Customer { CustomerId = 2, Name = "Merve", LastName = "Baler",  Adress = "Balıkesir", Budget = 12000, TypeId = 1,CategoryId=2 }
+              new Customer { CustomerId = 1, Name = "Semih", LastName = "Baler", Mail = "semihbaler@gmail.com", CityId = 1, Budget = 5000000, EstateTypeId = 2, CategoryId = 1 },
+              new Customer { CustomerId = 2, Name = "Merve", LastName = "Baler", CityId = 1, Budget = 12000, EstateTypeId = 1, CategoryId = 2 }
               );
         }
     }

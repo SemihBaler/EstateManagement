@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccesLayer.Migrations
 {
     [DbContext(typeof(EstateDbContext))]
-    [Migration("20231002212039_mig-1")]
-    partial class mig1
+    [Migration("20231026132157_mig-2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,15 +56,59 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5157),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4364),
                             Name = "Satılık",
                             Status = 1
                         },
                         new
                         {
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5167),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4373),
                             Name = "Kiralık",
+                            Status = 1
+                        });
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CityId");
+
+                    b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4709),
+                            Name = "Adana",
+                            Status = 1
+                        },
+                        new
+                        {
+                            CityId = 2,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4711),
+                            Name = "Adıyaman",
                             Status = 1
                         });
                 });
@@ -77,13 +121,13 @@ namespace DataAccesLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
-                    b.Property<string>("Adress")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("Budget")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -92,7 +136,7 @@ namespace DataAccesLayer.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EstateTypeId")
+                    b.Property<int>("EstateTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -110,9 +154,6 @@ namespace DataAccesLayer.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -120,9 +161,9 @@ namespace DataAccesLayer.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("EstateTypeId");
+                    b.HasIndex("CityId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("EstateTypeId");
 
                     b.ToTable("Customers");
 
@@ -130,27 +171,78 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             CustomerId = 1,
-                            Adress = "Ankara",
                             Budget = 5000000,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5293),
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4509),
+                            EstateTypeId = 2,
                             LastName = "Baler",
                             Mail = "semihbaler@gmail.com",
                             Name = "Semih",
-                            Status = 1,
-                            TypeId = 2
+                            Status = 1
                         },
                         new
                         {
                             CustomerId = 2,
-                            Adress = "Balıkesir",
                             Budget = 12000,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5299),
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4511),
+                            EstateTypeId = 1,
                             LastName = "Baler",
                             Name = "Merve",
-                            Status = 1,
-                            TypeId = 1
+                            Status = 1
+                        });
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.District", b =>
+                {
+                    b.Property<int>("DistrictId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DistrictId"));
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DistrictId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Districts");
+
+                    b.HasData(
+                        new
+                        {
+                            DistrictId = 1,
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4751),
+                            Name = "Seyhan",
+                            Status = 1
+                        },
+                        new
+                        {
+                            DistrictId = 2,
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4753),
+                            Name = "Ceyhan",
+                            Status = 1
                         });
                 });
 
@@ -168,17 +260,14 @@ namespace DataAccesLayer.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("District")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EstateTypeId")
                         .HasColumnType("int");
@@ -196,6 +285,8 @@ namespace DataAccesLayer.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("EstateTypeId");
 
                     b.ToTable("Estates");
@@ -206,9 +297,8 @@ namespace DataAccesLayer.Migrations
                             EstateId = 1,
                             Adress = "Bağlıca",
                             CategoryId = 1,
-                            City = "Ankara",
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5348),
-                            District = "Etimesgut",
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4562),
                             EstateTypeId = 2,
                             Price = 7500000,
                             Status = 1
@@ -218,35 +308,10 @@ namespace DataAccesLayer.Migrations
                             EstateId = 2,
                             Adress = "Alacaatlı",
                             CategoryId = 1,
-                            City = "Ankara",
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5350),
-                            District = "Çankaya",
+                            CityId = 1,
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4563),
                             EstateTypeId = 3,
                             Price = 12000000,
-                            Status = 1
-                        },
-                        new
-                        {
-                            EstateId = 3,
-                            Adress = "Burhaniye",
-                            CategoryId = 2,
-                            City = "Balıkesir",
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5352),
-                            District = "Susurluk",
-                            EstateTypeId = 1,
-                            Price = 6500,
-                            Status = 1
-                        },
-                        new
-                        {
-                            EstateId = 4,
-                            Adress = "Elvan",
-                            CategoryId = 1,
-                            City = "İzmir",
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5352),
-                            District = "merkez",
-                            EstateTypeId = 1,
-                            Price = 1500000,
                             Status = 1
                         });
                 });
@@ -282,21 +347,21 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             EstateTypeId = 1,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(5400),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4615),
                             Name = "Müstakil",
                             Status = 1
                         },
                         new
                         {
                             EstateTypeId = 2,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(6912),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4616),
                             Name = "Daire",
                             Status = 1
                         },
                         new
                         {
                             EstateTypeId = 3,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(6915),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4617),
                             Name = "Arsa",
                             Status = 1
                         });
@@ -348,7 +413,7 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             UserId = 1,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(7016),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4660),
                             Name = "Ahmet",
                             Role = "User",
                             Status = 1
@@ -356,7 +421,7 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             UserId = 2,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(7017),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4663),
                             Name = "Mehmet",
                             Role = "Customer",
                             Status = 1
@@ -364,7 +429,7 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             UserId = 3,
-                            CreatedDate = new DateTime(2023, 10, 3, 0, 20, 38, 987, DateTimeKind.Local).AddTicks(7018),
+                            CreatedDate = new DateTime(2023, 10, 26, 16, 21, 57, 676, DateTimeKind.Local).AddTicks(4664),
                             Name = "Yade",
                             Role = "Admin",
                             Status = 1
@@ -379,19 +444,34 @@ namespace DataAccesLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.EstateType", null)
+                    b.HasOne("EntityLayer.Concrete.City", "City")
                         .WithMany("Customers")
-                        .HasForeignKey("EstateTypeId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.User", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
+                    b.HasOne("EntityLayer.Concrete.EstateType", "EstateType")
+                        .WithMany("Customers")
+                        .HasForeignKey("EstateTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
 
-                    b.Navigation("Type");
+                    b.Navigation("City");
+
+                    b.Navigation("EstateType");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.District", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.City", "City")
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Estate", b =>
@@ -402,7 +482,13 @@ namespace DataAccesLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.EstateType", "Type")
+                    b.HasOne("EntityLayer.Concrete.City", "City")
+                        .WithMany("Estates")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.EstateType", "EstateType")
                         .WithMany("Estates")
                         .HasForeignKey("EstateTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -410,12 +496,23 @@ namespace DataAccesLayer.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("Type");
+                    b.Navigation("City");
+
+                    b.Navigation("EstateType");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
                 {
                     b.Navigation("Customers");
+
+                    b.Navigation("Estates");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.City", b =>
+                {
+                    b.Navigation("Customers");
+
+                    b.Navigation("Districts");
 
                     b.Navigation("Estates");
                 });

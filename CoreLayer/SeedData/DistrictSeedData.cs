@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace CoreLayer.SeedData
 {
-    public class CategorySeedData:IEntityTypeConfiguration<Category>
+    public class DistrictSeedData : IEntityTypeConfiguration<District>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<District> builder)
         {
             builder.HasData(
-                new Category { CategoryId = 1, Name = "Satılık" },
-                new Category { CategoryId = 2, Name = "Kiralık" }
-                );
-
+               new District { DistrictId = 1, Name = "Seyhan", CityId = 1 },
+               new District { DistrictId = 2, Name = "Ceyhan", CityId = 1 }
+               );
         }
     }
 }
