@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +24,6 @@
     <link href="/table/gentela/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="/table/gentela/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="/table/gentela/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="/table/gentela/build/css/custom.min.css" rel="stylesheet">
 
@@ -51,6 +51,45 @@
                 background-color: white;
                 color: #2980b9;
             }
+    /* Arka plan rengi */
+    #cityDropdown {
+        background-color: white;
+        position: absolute;
+        z-index: 1;
+        width: 82%; /* Genişlik 100% olacak */
+    }
+
+        #cityDropdown div {
+            color: black;
+            padding: 5px;
+        }
+
+            /* Seçeneklerin üzerine gelindiğinde arka plan ve yazı rengini değiştir */
+            #cityDropdown div:hover {
+                background-color: #3498db; /* Arka plan rengi */
+                color: white; /* Yazı rengi */
+                cursor: pointer;
+            }
+
+    #districtDropdown {
+        background-color: white;
+        position: absolute;
+        z-index: 1;
+        width: 82%; /* Genişlik 100% olacak */
+    }
+
+        #districtDropdown div {
+            color: black;
+            padding: 5px;
+        }
+
+            /* Seçeneklerin üzerine gelindiğinde arka plan ve yazı rengini değiştir */
+            #districtDropdown div:hover {
+                background-color: #3498db; /* Arka plan rengi */
+                color: white; /* Yazı rengi */
+                cursor: pointer;
+            }
+
 
 </style>
 <body class="nav-md">
@@ -89,43 +128,34 @@
                                 <label class="profile clearfix" style="color:white; margin-top:50px;">Konut</label>
                                 <div class="profile clearfix">
                                     <select class="form-control">
-                                        <option>--</option>
-                                        <option>Satılık</option>
-                                        <option>Kiralık</option>
-                                        <option>Option three</option>
-                                        <option>Option four</option>
+                                
                                     </select>
                                 </div>
                             </div>
                             <div id="filter">
                                 <label class="profile clearfix" style="color:white;">Emlak Tipi</label>
                                 <div class="profile clearfix">
-                                    <select class="form-control">
-                                        <option>--</option>
-                                        <option>Daire</option>
-                                        <option>Müstakil Ev</option>
-                                        <option>Arsa</option>
+                                    <select class="form-control" id="estateType" >
+                                     <option></option>
                                     </select>
                                 </div>
                             </div>
                             <div id="filter">
-                                <label class="profile clearfix" style="color:white;">İl</label>
+                                <label class="" style="color: white;">İl</label>
                                 <div class="profile clearfix">
-                                    <select class="form-control">
-                                        <option>--</option>
-                                        <option>Ankara</option>
-                                        <option>İstanbul</option>
-                                    </select>
+                                    <input type="text" id="cityInput" class="form-control">
+                                    <div id="cityDropdown"">
+                                        <!-- Seçenekler burada görünecek -->
+                                    </div>
                                 </div>
                             </div>
                             <div id="filter">
                                 <label class="profile clearfix" style="color:white;">İlçe</label>
                                 <div class="profile clearfix">
-                                    <select class="form-control">
-                                        <option>--</option>
-                                        <option>Etimesgut</option>
-                                        <option>Çankaya</option>
-                                    </select>
+                                    <input type="text" id="districtInput" class="form-control">
+                                    <div id="districtDropdown">
+                                        <!-- Seçenekler burada görünecek -->
+                                    </div>
                                 </div>
                             </div>
                             <div id="filter">
@@ -225,9 +255,214 @@
     <script src="/table/gentela/vendors/jszip/dist/jszip.min.js"></script>
     <script src="/table/gentela/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="/table/gentela/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="/table/gentela/build/js/custom.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- jQuery UI CSS (tema) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Konut verilerini getir
+        function fetchKonutData() {
+            var apiURL = 'https://localhost:7124/api/EstateTypeType/GetAllListEstateType';
+            fetch(apiURL)
+            
+                .then(response => response.json())
+                .then(data => {
+                    var estateSelect = document.getElementById('estateType');
+                    data.data.forEach(option => {
+                        var optionElement = document.createElement('option');
+                        optionElement.value = option.estateTypeId;
+                        optionElement.textContent = option.name;
+                        estateSelect.appendChild(optionElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Veri çekme hatası:', error);
+                });
+        }
+        fetchKonutData(); // Konut verilerini getir
+
+
+        // Şehir ve ilçe için yeniden kullanılabilir işlevler
+        function updateOptions(inputElement, dropdownElement, apiURL, maxDisplayedItems) {
+            inputElement.addEventListener('input', function () {
+                var keyword = inputElement.value;
+                updateDropdownOptions(inputElement, dropdownElement, apiURL, keyword, maxDisplayedItems);
+            });
+
+            inputElement.addEventListener('click', function () {
+                var keyword = inputElement.value;
+                updateDropdownOptions(inputElement, dropdownElement, apiURL, keyword, maxDisplayedItems);
+                toggleDropdown(dropdownElement); // Seçenekleri göster veya gizle
+            });
+        }
+
+        function toggleDropdown(dropdownElement) {
+            if (dropdownElement.style.display === 'block') {
+                dropdownElement.style.display = 'none';
+            } else {
+                dropdownElement.style.display = 'block'; // Burada bir yazım hatası vardı
+            }
+        }
+
+        function updateDropdownOptions(inputElement, dropdownElement, apiURL, keyword, maxDisplayedItems) {
+            dropdownElement.innerHTML = ""; // Önceki seçenekleri temizle
+            var displayedItems = 0;
+
+            fetch(apiURL)
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data.data)) {
+                        var itemsData = data.data;
+                        itemsData.forEach(item => {
+                            var itemName = item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                            if (displayedItems < maxDisplayedItems && itemName.toLowerCase().includes(keyword.toLowerCase())) {
+                                var optionElement = document.createElement('div');
+                                optionElement.textContent = item.name;
+                                optionElement.addEventListener('click', function () {
+                                    inputElement.value = item.name;
+                                    dropdownElement.style.display = 'none';
+                                });
+                                dropdownElement.appendChild(optionElement);
+                                displayedItems++;
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('API isteği başarısız oldu:', error);
+                });
+        }
+
+        // Şehir için işlevi çağır
+        var cityInput = document.getElementById('cityInput');
+        var cityDropdown = document.getElementById('cityDropdown');
+        var cityApiURL = 'https://localhost:7124/api/City/GetAllCity';
+
+        updateOptions(cityInput, cityDropdown, cityApiURL, 10);
+
+        // İlçe için işlevi çağır
+        var districtInput = document.getElementById('districtInput');
+        var districtDropdown = document.getElementById('districtDropdown');
+
+        // İlçeleri güncelle fonksiyonunu çağırmak için il seçim kutusuna bir 'change' olayı ekleyin
+        cityInput.addEventListener('change', function () {
+            var selectedCityId = cityInput.value; // Seçilen il'in ID'sini alın
+            var dynamicDistrictApiURL = 'https://localhost:7124/api/District/GetByCityId?id=' + selectedCityId;
+            updateOptions(districtInput, districtDropdown, dynamicDistrictApiURL, 10);
+        });
+
+        // İlçe seçildiğinde ilin adını ve ilçe adını güncelle
+        districtInput.addEventListener('change', function () {
+            var selectedCity = cityInput.value;
+            var selectedDistrict = districtInput.value;
+            cityInput.value = selectedCity + ' - ' + selectedDistrict;
+        });
+    });
+</script>
+<script> //BUrası yukarıdaki kodların tamamen aynısı oluğ jquery olarak yazılmış halleri....
+    $(document).ready(function () {
+        // Konut verilerini getir
+        function fetchKonutData() {
+            var apiURL = 'https://localhost:7124/api/EstateTypeType/GetAllListEstateType';
+            $.get(apiURL, function (data) {
+                var estateSelect = $('#estateType');
+                $.each(data.data, function (index, option) {
+                    estateSelect.append($('<option>', {
+                        value: option.estateTypeId,
+                        text: option.name
+                    }));
+                });
+            }).fail(function (error) {
+                console.error('Veri çekme hatası:', error);
+            });
+        }
+        fetchKonutData(); // Konut verilerini getir
+
+        // Şehir ve ilçe için yeniden kullanılabilir işlevler
+        function updateOptions(inputElement, dropdownElement, apiURL, maxDisplayedItems) {
+            inputElement.on('input', function () {
+                var keyword = inputElement.val();
+                updateDropdownOptions(inputElement, dropdownElement, apiURL, keyword, maxDisplayedItems);
+            });
+
+            inputElement.on('click', function () {
+                var keyword = inputElement.val();
+                updateDropdownOptions(inputElement, dropdownElement, apiURL, keyword, maxDisplayedItems);
+                toggleDropdown(dropdownElement); // Seçenekleri göster veya gizle
+            });
+        }
+
+        function toggleDropdown(dropdownElement) {
+            if (dropdownElement.css('display') === 'block') {
+                dropdownElement.css('display', 'none');
+            } else {
+                dropdownElement.css('display', 'block'); // Burada bir yazım hatası vardı
+            }
+        }
+
+        function updateDropdownOptions(inputElement, dropdownElement, apiURL, keyword, maxDisplayedItems) {
+            dropdownElement.empty(); // Önceki seçenekleri temizle
+            var displayedItems = 0;
+
+            $.get(apiURL, function (data) {
+                if (Array.isArray(data.data)) {
+                    var itemsData = data.data;
+                    $.each(itemsData, function (index, item) {
+                        var itemName = item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        if (displayedItems < maxDisplayedItems && itemName.toLowerCase().includes(keyword.toLowerCase())) {
+                            var optionElement = $('<div>', {
+                                text: item.name
+                            });
+                            optionElement.on('click', function () {
+                                inputElement.val(item.name);
+                                dropdownElement.css('display', 'none');
+                            });
+                            dropdownElement.append(optionElement);
+                            displayedItems++;
+                        }
+                    });
+                }
+            }).fail(function (error) {
+                console.error('API isteği başarısız oldu:', error);
+            });
+        }
+
+        // Şehir için işlevi çağır
+        var cityInput = $('#cityInput');
+        var cityDropdown = $('#cityDropdown');
+        var cityApiURL = 'https://localhost:7124/api/City/GetAllCity';
+
+        updateOptions(cityInput, cityDropdown, cityApiURL, 10);
+
+        // İlçe için işlevi çağır
+        var districtInput = $('#districtInput');
+        var districtDropdown = $('#districtDropdown');
+
+        // İlçeleri güncelle fonksiyonunu çağırmak için il seçim kutusuna bir 'change' olayı ekleyin
+        cityInput.on('change', function () {
+            var selectedCityId = cityInput.val(); // Seçilen il'in ID'sini alın
+            var dynamicDistrictApiURL = 'https://localhost:7124/api/District/GetByCityId?id=' + selectedCityId;
+            updateOptions(districtInput, districtDropdown, dynamicDistrictApiURL, 10);
+        });
+
+        // İlçe seçildiğinde ilin adını ve ilçe adını güncelle
+        districtInput.on('change', function () {
+            var selectedCity = cityInput.val();
+            var selectedDistrict = districtInput.val();
+            cityInput.val(selectedCity + ' - ' + selectedDistrict);
+        });
+    });
+</script>
 </html>

@@ -54,7 +54,14 @@ namespace EstateManagementApi
             builder.Services.AddScoped<IEstateTypeDal, EstateTypeDal>();
 
             builder.Services.AddScoped<CoreLayer.UnitOfWork.Abstract.IUnitOfWork, CoreLayer.UnitOfWork.Concrete.UnitOfWork<EstateDbContext>>();
-           
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrigin", 
+                    builder => builder.WithOrigins("https://localhost:44386")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
 
 
             // Add services to the container.
@@ -72,7 +79,7 @@ namespace EstateManagementApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAnyOrigin");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLayer.Abstract;
-using CoreLayer.Dtos.EstateTypeDtos;
+using CoreLayer.Dtos.EstateTypeDto;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

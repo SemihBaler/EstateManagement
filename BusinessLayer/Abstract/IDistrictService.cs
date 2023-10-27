@@ -11,5 +11,6 @@ namespace BusinessLayer.Abstract
     public interface IDistrictService
     {
         Task<IDataResult<IEnumerable<District>>> GetAllListAsync();
+        Task<IDataResult<IEnumerable<District>>> GetByCityIdAsync(int id);
     }
 }

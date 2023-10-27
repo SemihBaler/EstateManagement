@@ -21,5 +21,12 @@ namespace EstateManagementApi.Controllers
             return  Ok(result);
 
         }
+        [HttpGet("GetByCityId")]
+        public async Task<IActionResult> GetByCityId(int id)
+        {
+            var result = await _districtService.GetByCityIdAsync(id);
+            return Ok(result);
+
+        }
     }
 }
