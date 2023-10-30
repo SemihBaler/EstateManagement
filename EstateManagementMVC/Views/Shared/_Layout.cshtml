@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                             <div id="filter">
-                                <label class="" style="color: white;">İl</label>
+                                <label class="profile clearfix" style="color: white;">İl</label>
                                 <div class="profile clearfix">
                                     <input type="text" id="cityInput" class="form-control">
                                     <div id="cityDropdown"">
@@ -255,20 +255,28 @@
     <script src="/table/gentela/vendors/jszip/dist/jszip.min.js"></script>
     <script src="/table/gentela/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="/table/gentela/vendors/pdfmake/build/vfs_fonts.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- jQuery UI CSS (tema) -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    <script src="/table/gentela/build/js/custom.min.js"></script>
 
 </body>
+@*<script>
+    document.addEventListener('DOMContentLoaded',estateTypes);
+    function estateTypes(){
+        fetch()
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>*@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -371,7 +379,7 @@
         });
     });
 </script>
-<script> //BUrası yukarıdaki kodların tamamen aynısı oluğ jquery olarak yazılmış halleri....
+@*<script> //BUrası yukarıdaki kodların tamamen aynısı oluğ jquery olarak yazılmış halleri....
     $(document).ready(function () {
         // Konut verilerini getir
         function fetchKonutData() {
@@ -464,5 +472,5 @@
             cityInput.val(selectedCity + ' - ' + selectedDistrict);
         });
     });
-</script>
+</script>*@
 </html>

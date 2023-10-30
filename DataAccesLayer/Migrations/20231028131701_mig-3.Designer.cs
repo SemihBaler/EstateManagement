@@ -4,6 +4,7 @@ using DataAccesLayer.Concrete.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccesLayer.Migrations
 {
     [DbContext(typeof(EstateDbContext))]
-    partial class EstateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231028131701_mig-3")]
+    partial class mig3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,14 +56,14 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4653),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5570),
                             Name = "Satılık",
                             Status = 1
                         },
                         new
                         {
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4663),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5582),
                             Name = "Kiralık",
                             Status = 1
                         });
@@ -97,14 +100,14 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(5010),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5981),
                             Name = "Adana",
                             Status = 1
                         },
                         new
                         {
                             CityId = 2,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(5011),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5982),
                             Name = "Adıyaman",
                             Status = 1
                         });
@@ -171,7 +174,7 @@ namespace DataAccesLayer.Migrations
                             Budget = 5000000,
                             CategoryId = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4799),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5723),
                             EstateTypeId = 2,
                             LastName = "Baler",
                             Mail = "semihbaler@gmail.com",
@@ -184,7 +187,7 @@ namespace DataAccesLayer.Migrations
                             Budget = 12000,
                             CategoryId = 2,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4801),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5725),
                             EstateTypeId = 1,
                             LastName = "Baler",
                             Name = "Merve",
@@ -229,7 +232,7 @@ namespace DataAccesLayer.Migrations
                         {
                             DistrictId = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(5082),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(6028),
                             Name = "Seyhan",
                             Status = 1
                         },
@@ -237,7 +240,7 @@ namespace DataAccesLayer.Migrations
                         {
                             DistrictId = 2,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(5084),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(6030),
                             Name = "Ceyhan",
                             Status = 1
                         });
@@ -263,7 +266,7 @@ namespace DataAccesLayer.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DistrictName")
+                    b.Property<string>("District")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EstateTypeId")
@@ -294,8 +297,8 @@ namespace DataAccesLayer.Migrations
                             EstateId = 1,
                             CategoryId = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4849),
-                            DistrictName = "Bağlıca",
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5775),
+                            District = "Bağlıca",
                             EstateTypeId = 2,
                             Price = 7500000,
                             Status = 1
@@ -305,8 +308,8 @@ namespace DataAccesLayer.Migrations
                             EstateId = 2,
                             CategoryId = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4852),
-                            DistrictName = "Alacaatlı",
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5778),
+                            District = "Alacaatlı",
                             EstateTypeId = 3,
                             Price = 12000000,
                             Status = 1
@@ -344,21 +347,21 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             EstateTypeId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4898),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5831),
                             Name = "Müstakil",
                             Status = 1
                         },
                         new
                         {
                             EstateTypeId = 2,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4903),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5833),
                             Name = "Daire",
                             Status = 1
                         },
                         new
                         {
                             EstateTypeId = 3,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4904),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5833),
                             Name = "Arsa",
                             Status = 1
                         });
@@ -410,7 +413,7 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             UserId = 1,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4954),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5926),
                             Name = "Ahmet",
                             Role = "User",
                             Status = 1
@@ -418,7 +421,7 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             UserId = 2,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4955),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5928),
                             Name = "Mehmet",
                             Role = "Customer",
                             Status = 1
@@ -426,7 +429,7 @@ namespace DataAccesLayer.Migrations
                         new
                         {
                             UserId = 3,
-                            CreatedDate = new DateTime(2023, 10, 28, 16, 22, 10, 425, DateTimeKind.Local).AddTicks(4956),
+                            CreatedDate = new DateTime(2023, 10, 28, 16, 17, 1, 651, DateTimeKind.Local).AddTicks(5929),
                             Name = "Yade",
                             Role = "Admin",
                             Status = 1

@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         [Key]
         public int EstateId { get; set; }
         public int? Price { get; set; }
-        public string? District { get; set; }
+        public string? DistrictName { get; set; }
         public City City { get; set; }
         public int CityId { get; set; }
         public EstateType EstateType { get; set; }
